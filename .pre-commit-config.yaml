@@ -1,0 +1,62 @@
+fail_fast: true
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.5.0
+    hooks:
+      - id: check-added-large-files
+        name: use git LFS for large BINARY files
+        # Even moderately large binary files can bloat a repository over time
+        # making it slow to download and work with, thus should be managed by
+        # Git LFS.
+        # (https://wikihub.cudaops.com/pages/viewpage.action?spaceKey=~jbischko&title=Cheat+Sheet#CheatSheet-LargeFileStorage(LFS)primer)
+        # If you are commiting a large text files, such as Jupyter notebooks,
+        # you can safely increase the limit below.
+        args: ["--maxkb=100"]
+      - id: check-ast
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: ["--fix=lf"]
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: debug-statements
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v1.27.0 # last python 2
+    hooks:
+      - id: pyupgrade
+        name: pyupgrade (you might have to git add files again)
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.5.1 # last python 2
+    hooks:
+      - id: rst-backticks
+      - id: python-no-log-warn
+      - id: python-no-eval
+      - id: python-check-mock-methods
+      - id: python-check-blanket-noqa
+  - repo: https://github.com/codespell-project/codespell
+    rev: v1.17.1 # last python 2
+    hooks:
+      - id: codespell
+  - repo: https://github.com/psf/black
+    rev: stable
+    hooks:
+      - id: black
+        name: Black formatter (you might have to git add files)
+  - repo: https://github.com/pre-commit/mirrors-pylint
+    rev: f431e1c # last python 2
+    hooks:
+      - id: pylint
+#  - repo: local
+#    hooks:
+#      - id:
+#        name: Run tox tests (might take long, maybe use `SKIP=tox`)
+#        entry: tox --parallel=auto --result-json results.json
+#        language: system
+# - id: conv_readme
+#   name: Re-structured text Readme ('git add README.rst' if this failed)
+#   entry: pandoc -s README.md -o README.rst
+#   language: system
+#   files: README.md

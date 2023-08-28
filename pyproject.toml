@@ -1,0 +1,4 @@
+[build-system]
+requires = ["cudasetuptools>=0.4.1"]
+
+build-backend = "setuptools.build_meta:__legacy__"

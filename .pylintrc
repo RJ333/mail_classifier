@@ -1,0 +1,48 @@
+[MESSAGES CONTROL]
+
+disable=W,
+        C,
+        backtick,
+        long-suffix,
+        import-star-module-level,
+        non-ascii-bytes-literal,
+        raw-checker-failed,
+        bad-inline-option,
+        locally-disabled,
+        locally-enabled,
+        file-ignored,
+        suppressed-message,
+        useless-suppression,
+        deprecated-pragma,
+        cmp-builtin,
+        coerce-builtin,
+        execfile-builtin,
+        raw_input-builtin,
+        standarderror-builtin,
+        coerce-method,
+        delslice-method,
+        getslice-method,
+        too-few-public-methods,
+        too-many-locals,
+        too-many-branches,
+        setslice-method,
+        no-absolute-import,
+        dict-iter-method,
+        dict-view-method,
+        next-method-called,
+        duplicate-code,
+        cmp-method,
+        using-cmp-argument,
+        inconsistent-return-statements,
+        bad-python3-import,
+        import-error,
+
+# import-error, because pylint can't find pyperclip and others
+#+because pre-commit doesn't set the path right
+
+
+enable=c-extension-no-member
+
+
+[REPORTS]
+msg-template={msg_id}:{line:3d},{column:2d}: {msg} ({symbol})

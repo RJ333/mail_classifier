@@ -1,0 +1,17 @@
+# This file exists so you can easily regenerate your project.
+#
+# You can run:
+#
+#    cookiecutter --overwrite-if-exists --config-file=project-path/.cookiecutterrc cu:qa_pypackage
+
+default_context:
+    qa_pypackage_version:      '0.1.0'
+    author_email:              'rjanssen@barracuda.com'
+    author_name:               'Rene Janssen'
+    cuda_user:                 'rjanssen'
+    expert_options:            'no'
+    package_name:              'mail_classifier'
+    project:                   '~rjanssen'
+    repo_host:                 'folsom'
+    repo_type:                 'user (personal for ~rjanssen)'
+
