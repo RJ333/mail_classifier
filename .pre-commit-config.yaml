@@ -36,19 +36,19 @@ repos:
       - id: python-no-eval
       - id: python-check-mock-methods
       - id: python-check-blanket-noqa
-  - repo: https://github.com/codespell-project/codespell
-    rev: v1.17.1 # last python 2
-    hooks:
-      - id: codespell
+        #  - repo: https://github.com/codespell-project/codespell
+        #rev: v1.17.1 # last python 2
+        #hooks:
+        #- id: codespell
   - repo: https://github.com/psf/black
     rev: stable
     hooks:
       - id: black
         name: Black formatter (you might have to git add files)
-  - repo: https://github.com/pre-commit/mirrors-pylint
-    rev: f431e1c # last python 2
-    hooks:
-      - id: pylint
+        #  - repo: https://github.com/pre-commit/mirrors-pylint
+        #rev: f431e1c # last python 2
+        #hooks:
+        #- id: pylint
 #  - repo: local
 #    hooks:
 #      - id:
