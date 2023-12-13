@@ -30,3 +30,5 @@ nosetests.xml
 .DS_store
 .idea/
 .idea_modules/
+
+.ipynb_checkpoints
