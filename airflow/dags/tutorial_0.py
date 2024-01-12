@@ -80,3 +80,14 @@ You can document your task using the attributes `doc_md`(markdown), `doc` (plain
     # dag.doc_md = """
     # This is a documentation placed anywhere
     # """
+
+    # dependencies
+    # task1.set_downstream(task2) # task2 is downstream of/depends on task1
+    # task2.set_upstream(task1) # task1 is upstream of task2
+    # task1 >> task2 # the same
+    # task2 << task1 # the same
+
+    # task1 >> task2 >> task3
+
+    # task1 >> [task2, task3]
+    task1.set_downstream([task2, task3])
