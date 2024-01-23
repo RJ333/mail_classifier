@@ -95,6 +95,19 @@ def produce_df(reduced_mails, most_common_5):
     return combined_df
 
 
+def write_to_file(df, labels):
+    folder = Path("/mnt/c/wsl_shared/enron")
+    labels_path = folder / "labels"
+    df_path = folder / "mails.csv"
+
+    log.info("writing labels")
+    with open(labels_path, "w") as file:
+        json.dump(labels, file)
+
+    log.info("writing dateframe")
+    df.to_csv(df_path, sep=",", index=False)
+
+
 start_time = time.monotonic()
 good_mails_dict, spam_mails_dict = read_emails()
 mails = combine_emails(good_mails_dict, spam_mails_dict)
@@ -102,6 +115,7 @@ mail_features = create_features(mails)
 labels = get_labels(mail_features)
 reduced_mails, most_common_5 = reduce_email_props(mail_features)
 combined_df = produce_df(reduced_mails, most_common_5)
+write_to_file(combined_df, labels)
 
 end_time = time.monotonic()
 log.info("Creating features done, elapsed time %ss", round(end_time - start_time, 1))
