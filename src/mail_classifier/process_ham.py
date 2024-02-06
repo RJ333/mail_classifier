@@ -12,12 +12,14 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 
-loglevel = logging.DEBUG
-logging.basicConfig(level=loglevel)
+log_level = logging.DEBUG
+logging.basicConfig(level=log_level)
 log = logging.getLogger(__name__)
 
 
 PS = PorterStemmer()
+PARENT_DIR = "/mnt/c/wsl_shared/enron/"
+LABEL = "ham_email"
 
 
 def exp_clean(text):
@@ -65,13 +67,11 @@ def mail_to_dict(mails):
 
 def main():
     start_time = time.monotonic()
-    parent_dir = "/mnt/c/wsl_shared/enron/"
-    mail_dirs = [f"{parent_dir}/enron{n}/ham" for n in range(1, 7)]
+    mail_dirs = [f"{PARENT_DIR}/enron{n}/ham" for n in range(1, 7)]
     all_file_names = [
         os.path.join(dir, file) for dir in mail_dirs for file in os.listdir(dir)
     ]
     file_names = random.sample(all_file_names, 1500)  # we have way too many ham emails
-    label = "ham_email"
 
     log.info("Reading ham emails")
     all_mails = []
@@ -80,13 +80,13 @@ def main():
         print(mail)
         with open(mail, errors="ignore") as m:
             # we could save time here if we had one tuple with many lists...
-            all_mails.append((mail, m.readlines(), label))
+            all_mails.append((mail, m.readlines(), LABEL))
 
     log.info("Processing %d emails", len(all_mails))
     processed_mails = mail_to_dict(all_mails)
 
-    log.info("writing json to %s", parent_dir)
-    with open(Path(parent_dir, "cleaned_ham_emails.json"), "w", encoding="utf-8") as f:
+    log.info("writing json to %s", PARENT_DIR)
+    with open(Path(PARENT_DIR, "cleaned_ham_emails.json"), "w", encoding="utf-8") as f:
         json.dump(processed_mails, f, ensure_ascii=False, indent=4)
     end_time = time.monotonic()
     log.info("Email processing done, elapsed time %ss", round(end_time - start_time, 1))

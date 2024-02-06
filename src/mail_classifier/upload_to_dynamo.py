@@ -4,8 +4,8 @@ import logging
 import time
 from pathlib import Path
 
-loglevel = logging.INFO
-logging.basicConfig(level=loglevel)
+log_level = logging.INFO
+logging.basicConfig(level=log_level)
 log = logging.getLogger(__name__)
 
 
