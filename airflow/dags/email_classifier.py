@@ -19,24 +19,24 @@ with DAG(
     tags=["example"],
 ) as dag:
     """
-    this is my dag docstring for the bash trial
+    A DAG for automated email processing and classification
     """
     get_ham_mails = BashOperator(
-        task_id="ham_mails",
+        task_id="get_ham_mails",
         bash_command="python /home/rjanssen/git/mail_classifier/src/mail_classifier/process_ham.py",
     )
 
     get_spam_mails = BashOperator(
-        task_id="spam_mails",
+        task_id="get_spam_mails",
         bash_command="python /home/rjanssen/git/mail_classifier/src/mail_classifier/process_spam.py",
     )
 
     create_features = BashOperator(
-        task_id="features",
+        task_id="create_features",
         bash_command="python /home/rjanssen/git/mail_classifier/src/mail_classifier/create_features.py",
     )
     classify_emails = BashOperator(
-        task_id="classify",
+        task_id="classify_emails",
         bash_command="python /home/rjanssen/git/mail_classifier/src/mail_classifier/classification.py",
     )
     display_results = BashOperator(
