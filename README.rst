@@ -2,24 +2,27 @@
 mail_classifier
 ===============
 
-Short description.
+A set of bash and python scripts to classify email via Random Forest as spam or ham
 
-Assumes the short description will always be the third non-empty line in this
-document.
+the mail classifier takes either emails from the enron dataset or real emails from newsletters, cleans them, creates features and runs a Random Forest classification on them.
 
 Usage
 -----
+for real email usage, you need to have the getmail lib installed and configured. Otherwise, just use the files from the enron data set, which you can find here http://nlp.cs.aueb.gr/software_and_datasets/Enron-Spam/index.html (preprocessed).
+Then run the process_ham.py and process_spam.py (after adjusting the file paths), followed by classification.py, which will in turn call create_features.py
+Now, you can also use the airflow pipeline:: bash
+    source venv/bin/activate
+    airflow standalone
+
+    #(in another terminal)
+    source venv/bin/activate
+    airflow dags test email_classifier
+
 
 Installation
 ------------
+clone the repo and install the required packages
 
-Mail_classifier is available on
-`Cuda Devpi <http://10.17.65.203/root/test/cudasetuptools/>`_
-You can install it via ``pip``:
-
-::
-
-    python -m pip install --index-url http://10.17.65.203/root/test/+simple --trusted host 10.17.65.203 mail_classifier
 
 Requirements
 ^^^^^^^^^^^^
